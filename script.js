@@ -1,0 +1,1 @@
+document.querySelectorAll("[overlap-text]").forEach(e=>e.innerHTML=[...e.innerText].map((c,i)=>`<span style="--i:${i}">${c}</span>`).join(""))
