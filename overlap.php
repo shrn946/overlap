@@ -2,7 +2,7 @@
 /**
  * Plugin Name: CPC Shadow Overlap
  * Description: Overlapping text effect with configurable styles (front, back, alter) and shortcode generator.
- * Version: 2.7
+ * Version: 2.8
  * Author: WP DESIGN LAB
  */
 
@@ -12,10 +12,10 @@ if (!defined('ABSPATH')) exit;
  * Enqueue frontend assets
  */
 function cpc_shadow_enqueue_assets() {
-    // Load Bowlby One + alternatives
+    // Load Bowlby One + other fonts
     wp_enqueue_style(
         'cpc-shadow-fonts',
-        'https://fonts.googleapis.com/css2?family=Bowlby+One&family=Anton&family=Luckiest+Guy&family=Fredoka+One&family=Rubik+Mono+One&display=swap',
+        'https://fonts.googleapis.com/css2?family=Bowlby+One&family=Anton&family=Luckiest+Guy&family=Fredoka+One&family=Rubik+Mono+One&family=Oswald&family=Pacifico&family=Press+Start+2P&family=Monoton&family=Abril+Fatface&display=swap',
         [],
         null
     );
@@ -79,6 +79,11 @@ function cpc_shadow_settings_page() { ?>
                 <option value="Luckiest Guy">Luckiest Guy</option>
                 <option value="Fredoka One">Fredoka One</option>
                 <option value="Rubik Mono One">Rubik Mono One</option>
+                <option value="Oswald">Oswald</option>
+                <option value="Pacifico">Pacifico</option>
+                <option value="Press Start 2P">Press Start 2P</option>
+                <option value="Monoton">Monoton</option>
+                <option value="Abril Fatface">Abril Fatface</option>
             </select>
         </label>
 
@@ -112,7 +117,6 @@ function cpc_shadow_settings_page() { ?>
 
             let sc = '[cpc-shadow text="'+txt+'" type="'+type+'" font="'+font+'" font_size="'+size+'" color="'+color+'" align="'+align+'"]';
 
-
             document.getElementById('cpc-shortcode-box').innerText = sc;
         }
         </script>
@@ -125,7 +129,6 @@ function cpc_shadow_settings_page() { ?>
  * [cpc-shadow text="Hello World" type="front" font="Bowlby One" font_size="64px" color="#ff0000" align="center"]
  */
 function cpc_shadow_shortcode($atts) {
-	
     $atts = shortcode_atts([
         'text'      => 'Overlap Text',
         'type'      => 'front',
