@@ -1,24 +1,31 @@
+/* Main wrapper */
+.cpc-shadow-wrapper {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: "Bowlby One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(2rem, 10vw + 1vw, 12rem);
+    line-height: 1.1;
+    text-align: center; /* default alignment */
+}
+
+/* Overlap text */
 [overlap-text] {
-	text-transform: uppercase;
-	letter-spacing: -0.25ch;
-	text-shadow: 1px 1px 0.25ch black;
-	display: flex; 
-	> span { z-index: calc(var(--m, 1) * var(--i, 1)); min-width: 0.25ch }
-	&[overlap-text="front"] { --m:  1 }
-	&[overlap-text="back" ] { --m: -1 }
-	&[overlap-text="alter"] > span:nth-child(even){ --m: -1 }
+    text-transform: uppercase;
+    letter-spacing: -0.25ch;
+    text-shadow: 1px 1px 0.25ch black;
+    display: inline-block; /* use inline-block so text-align works */
 }
 
-
-.cpc-shadow-wrapper{
-	margin: 0;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-family: "Bowlby One", sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: clamp(2rem, 10vw + 1vw, 12rem);
+/* Span inside overlap text for z-index effect */
+[overlap-text] > span {
+    z-index: calc(var(--m, 1) * var(--i, 1));
+    min-width: 0.25ch;
 }
+
+/* Type-specific variables */
+[overlap-text="front"] { --m: 1; }
+[overlap-text="back"]  { --m: -1; }
+[overlap-text="alter"] > span:nth-child(even) { --m: -1; }
