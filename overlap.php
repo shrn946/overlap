@@ -131,7 +131,7 @@ function cpc_shadow_shortcode($atts) {
         'font'      => 'Bowlby One',
         'font_size' => '64px',
         'color'     => '#ff0000',
-        'align'     => 'center'
+        'align'     => 'left' // <-- default changed to left
     ], $atts);
 
     $text  = esc_html($atts['text']);
@@ -152,8 +152,8 @@ function cpc_shadow_shortcode($atts) {
     }
 
     // Map text align to wrapper
-    $justify = 'center';
-    if($align === 'left') $justify = 'flex-start';
+    $justify = 'flex-start'; // default left
+    if($align === 'center') $justify = 'center';
     if($align === 'right') $justify = 'flex-end';
 
     $style = "font-family:'$font',sans-serif;font-weight:700;font-size:$size;color:$color;";
@@ -163,6 +163,7 @@ function cpc_shadow_shortcode($atts) {
 
     return '<div class="cpc-shadow-wrapper '.$css_class.'" style="'.$wrapper_style.'"><div overlap-text="'.$type.'" style="'.$style.'">'.$text.'</div></div>';
 }
+
 add_shortcode('cpc-shadow', 'cpc_shadow_shortcode');
 
 /*-----------------------------------
