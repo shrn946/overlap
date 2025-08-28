@@ -52,76 +52,72 @@ add_action('admin_menu', 'cpc_shadow_add_admin_page');
 /**
  * Admin Settings Page – Shortcode Generator
  */
+/**
+ * Admin Settings Page – Shortcode Generator
+ */
 function cpc_shadow_settings_page() { ?>
-    <div class="wrap cpc-admin-wrapper">
-        <h1 class="cpc-title">CPC Shadow Overlap</h1>
+<div class="wrap cpc-admin-wrapper">
+    <h1 class="cpc-title">CPC Shadow Overlap</h1>
 
-        <h2>Shortcode Generator</h2>
-        <p>Generate shortcode, then paste into Elementor or any post/page.</p>
-        
-        <label>Text: 
-            <input type="text" id="cpc-text" value="Overlap Text">
-        </label>
+    <h2>Shortcode Generator</h2>
+    <p>Generate shortcode, then paste into Elementor or any post/page.</p>
+    
+    <label>Text: 
+        <input type="text" id="cpc-text" value="Overlap Text">
+    </label>
 
-        <label>Choose Type:
-            <select id="cpc-type">
-                <option value="front">Front</option>
-                <option value="back">Back</option>
-                <option value="alter">Alter</option>
-            </select>
-        </label>
+    <label>Choose Type:
+        <select id="cpc-type">
+            <option value="front">Front</option>
+            <option value="back">Back</option>
+            <option value="alter">Alter</option>
+        </select>
+    </label>
 
-        <label>Font Family:
-            <select id="cpc-font">
-                <option value="inherit">Inherit (Theme Body Font)</option>
-                <option value="Bowlby One">Bowlby One (Default)</option>
-                <option value="Anton">Anton</option>
-                <option value="Luckiest Guy">Luckiest Guy</option>
-                <option value="Fredoka One">Fredoka One</option>
-                <option value="Rubik Mono One">Rubik Mono One</option>
-                <option value="Oswald">Oswald</option>
-                <option value="Pacifico">Pacifico</option>
-                <option value="Press Start 2P">Press Start 2P</option>
-                <option value="Monoton">Monoton</option>
-                <option value="Abril Fatface">Abril Fatface</option>
-            </select>
-        </label>
+    <label>Font Family:
+        <select id="cpc-font">
+            <option value="inherit">Inherit (Theme Body Font)</option>
+            <option value="Bowlby One">Bowlby One (Default)</option>
+            <option value="Anton">Anton</option>
+            <option value="Luckiest Guy">Luckiest Guy</option>
+            <option value="Fredoka One">Fredoka One</option>
+            <option value="Rubik Mono One">Rubik Mono One</option>
+            <option value="Oswald">Oswald</option>
+            <option value="Pacifico">Pacifico</option>
+            <option value="Press Start 2P">Press Start 2P</option>
+            <option value="Monoton">Monoton</option>
+            <option value="Abril Fatface">Abril Fatface</option>
+        </select>
+    </label>
 
-        <label>Font Size:
-            <input type="text" id="cpc-font-size" value="64px" placeholder="e.g. 64px or clamp(2rem,10vw,12rem)">
-        </label>
+    <label>Font Size:
+        <input type="text" id="cpc-font-size" value="64px" placeholder="e.g. 64px or clamp(2rem,10vw,12rem)">
+    </label>
 
-        <label>Text Color:
-            <input type="color" id="cpc-color" value="#ff0000">
-        </label>
+    <label>Text Color:
+        <input type="color" id="cpc-color" value="#ff0000">
+    </label>
 
-        <label>Text Align:
-            <select id="cpc-align">
-                <option value="left">Left</option>
-                <option value="center" selected>Center</option>
-                <option value="right">Right</option>
-            </select>
-        </label>
+    <button class="button button-primary" onclick="cpcGenerateShortcode()">Generate Shortcode</button>
+    <pre id="cpc-shortcode-box" class="cpc-shortcode-output"></pre>
 
-        <button class="button button-primary" onclick="cpcGenerateShortcode()">Generate Shortcode</button>
-        <pre id="cpc-shortcode-box" class="cpc-shortcode-output"></pre>
+    <script>
+    function cpcGenerateShortcode() {
+        let txt   = document.getElementById('cpc-text').value;
+        let type  = document.getElementById('cpc-type').value;
+        let font  = document.getElementById('cpc-font').value;
+        let size  = document.getElementById('cpc-font-size').value;
+        let color = document.getElementById('cpc-color').value;
 
-        <script>
-        function cpcGenerateShortcode() {
-            let txt   = document.getElementById('cpc-text').value;
-            let type  = document.getElementById('cpc-type').value;
-            let font  = document.getElementById('cpc-font').value;
-            let size  = document.getElementById('cpc-font-size').value;
-            let color = document.getElementById('cpc-color').value;
-            let align = document.getElementById('cpc-align').value;
+        // Align removed, default centered in shortcode CSS
+        let sc = '[cpc-shadow text="'+txt+'" type="'+type+'" font="'+font+'" font_size="'+size+'" color="'+color+'"]';
 
-            let sc = '[cpc-shadow text="'+txt+'" type="'+type+'" font="'+font+'" font_size="'+size+'" color="'+color+'" align="'+align+'"]';
-
-            document.getElementById('cpc-shortcode-box').innerText = sc;
-        }
-        </script>
-    </div>
+        document.getElementById('cpc-shortcode-box').innerText = sc;
+    }
+    </script>
+</div>
 <?php }
+
 
 /**
  * Shortcode
